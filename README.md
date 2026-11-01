@@ -1,59 +1,56 @@
-# Scroll Goblin
-
+<h1 align="center">Scroll Goblin</h1>
+<p align="center"><b>Windows-style middle-button autoscroll for Linux.</b><br>
+Hold and drag, or click, and the page scrolls faster the farther you move.</p>
+<p align="center">
 <a href="https://github.com/GAServantes/scroll-goblin/actions/workflows/ci.yml"><img src="https://github.com/GAServantes/scroll-goblin/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 <a href="https://github.com/GAServantes/scroll-goblin/releases/latest"><img src="https://img.shields.io/github/v/release/GAServantes/scroll-goblin" alt="Latest release"></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue" alt="License: GPL-3.0-or-later"></a>
-
-Windows-style middle-button autoscroll for Linux: hold and drag, or click,
-and the page scrolls faster the farther you move.
-
-> **Scroll Goblin is a fork of [gnhen/midscroll](https://github.com/gnhen/midscroll)**
-> with proper GNOME support. Under the hood it still goes by `midscroll`:
-> the command, package, services, config file (`/etc/midscroll.conf`) and
-> GNOME extension ID keep that name, so existing installs upgrade in
-> place. A small GNOME Shell extension does the scrolling from inside the
-> compositor, so it starts the moment you drag, stays smooth even at the
-> slowest speeds and pans diagonally. Tested on GNOME 46 (Ubuntu 24.04)
-> and GNOME 50 (Ubuntu 26.04). The GNOME work is also offered upstream as
-> [gnhen/midscroll#17](https://github.com/gnhen/midscroll/pull/17).
+</p>
 
 ![Hold the middle button and drag: the page crawls, then speeds up, then scrolls back up when you drag above the press point](screenshots/gnome-demo.webp)
 
-<sub>Recorded at 25 fps in Brave on GNOME 46 (Ubuntu 24.04) with the optional
-*Ring and trail* style: a slow crawl, a faster scroll, then a drag back
+<p align="center"><sub>Recorded at 25 fps in Brave on GNOME 46 (Ubuntu 24.04) with the optional
+<i>Ring and trail</i> style: a slow crawl, a faster scroll, then a drag back
 above the press point to scroll up. By default nothing is drawn; the
-styles are in the extension's settings.</sub>
+styles are in the extension's settings.</sub></p>
 
-Hold the middle mouse button and drag. The page scrolls in that direction,
-faster the farther you drag from where you pressed, like Windows 10/11.
-Release to stop. Diagonal drags scroll both axes, so it pans wide pages
-too.
+**Scroll Goblin is a fork of [gnhen/midscroll](https://github.com/gnhen/midscroll)**
+with proper GNOME support. Under the hood it still goes by `midscroll`:
+the command, package, services, config file (`/etc/midscroll.conf`) and
+GNOME extension ID keep that name, so existing installs upgrade in
+place. A small GNOME Shell extension does the scrolling from inside the
+compositor, so it starts the moment you drag, stays smooth even at the
+slowest speeds and pans diagonally. Tested on GNOME 46 (Ubuntu 24.04)
+and GNOME 50 (Ubuntu 26.04). The GNOME work is also offered upstream as
+[gnhen/midscroll#17](https://github.com/gnhen/midscroll/pull/17).
 
-A middle click without dragging also starts autoscroll, like Windows: move
-the mouse to set the speed, and the next click of any button stops it.
-This is **Click to scroll too** in the settings GUI (`TOGGLE_MODE`, on by
-default); turn it off and a quick middle click is an ordinary middle click
-again (paste, open link in new tab). On GNOME, a middle click still opens
-a link in a new tab: the extension checks whether the app is showing its link hand
-(the hand cursor's hot spot is read from your cursor theme, so it can't be
-mistaken for the arrow). A browser's tabs, toolbar and bookmarks bar (the
-top 120 px of the window) keep the middle click too, so it still closes or
-opens tabs there. Everywhere else, including text boxes, a middle click
-starts autoscroll instead of pasting. Without the extension (KDE, other
-desktops) every middle click starts autoscroll.
+## What it does
 
-It works in every app, on Wayland and X11, because it operates at the
-kernel input layer (evdev in, uinput out) instead of hooking any
-particular desktop or toolkit.
-
-Details:
-
-- The speed curve is Chromium/Edge's actual Windows autoscroll formula
+- **Hold the middle mouse button and drag.** The page scrolls in that direction,
+  faster the farther you drag from where you pressed, like Windows 10/11.
+  Release to stop. Diagonal drags scroll both axes, so it pans wide pages
+  too.
+- **A middle click without dragging also starts autoscroll,** like Windows: move
+  the mouse to set the speed, and the next click of any button stops it.
+  This is **Click to scroll too** in the settings GUI (`TOGGLE_MODE`, on by
+  default); turn it off and a quick middle click is an ordinary middle click
+  again (paste, open link in new tab). On GNOME, a middle click still opens
+  a link in a new tab: the extension checks whether the app is showing its link hand
+  (the hand cursor's hot spot is read from your cursor theme, so it can't be
+  mistaken for the arrow). A browser's tabs, toolbar and bookmarks bar (the
+  top 120 px of the window) keep the middle click too, so it still closes or
+  opens tabs there. Everywhere else, including text boxes, a middle click
+  starts autoscroll instead of pasting. Without the extension (KDE, other
+  desktops) every middle click starts autoscroll.
+- **It works in every app, on Wayland and X11,** because it operates at the
+  kernel input layer (evdev in, uinput out) instead of hooking any
+  particular desktop or toolkit.
+- **The speed curve** is Chromium/Edge's actual Windows autoscroll formula
   (`0.000008 * distance^2.2` px/ms). There is no dead zone: scrolling
   starts on the first pixel and the curve keeps tiny drags crawling,
   while a full-screen drag flies. A release within 6 px of the press
   point still counts as a middle click.
-- The cursor moves freely while you drag, like Windows, and the scroll
+- **The cursor moves freely** while you drag, like Windows, and the scroll
   stays on the window you started in. On GNOME the Shell
   extension (`gnome-extension/`) does the scrolling itself, as smooth
   pixel scroll from inside the compositor, and keeps the pointer inside
@@ -62,7 +59,7 @@ Details:
   for the first half notch of every scroll and every direction change.
   Slow drags move in sub-pixel steps, so even a crawl is smooth in
   Chromium-based browsers, which magnify each step.
-- With a free cursor the scroll goes to whatever part of that window is
+- **With a free cursor** the scroll goes to whatever part of that window is
   under the pointer, so dragging up over a browser's tab strip scrolls
   the tabs (Chromium-based browsers switch tabs). `FREE_CURSOR = false`
   anchors the real pointer at the press point instead, so the scroll
@@ -71,10 +68,10 @@ Details:
   let go; on KDE Plasma Wayland a drawn copy of your pointer beside a
   badge at the press point. When you let go, the real pointer jumps to
   where your hand is.
-- Apps that use middle-drag themselves (FreeCAD, OrcaSlicer and Minecraft
+- **Apps that use middle-drag themselves** (FreeCAD, OrcaSlicer and Minecraft
   by default) are blacklisted by window class: while one of them is
   focused, Scroll Goblin pauses itself and the middle button behaves natively.
-- The desktop and panels are left alone by default: while a desktop shell
+- **The desktop and panels are left alone** by default: while a desktop shell
   (plasmashell, xfdesktop, waybar, GNOME Shell, ...) is focused it
   pauses, so a middle-drag can't hijack the desktop. Turn on **Enable on
   desktop & panels** (`DESKTOP_SCROLL = true`) if you want it there too.
@@ -336,6 +333,20 @@ your clicks, and what the GNOME extension does with its access.
 
 Found something sketchy or a way to harden it further? Open an issue or PR -
 security review is genuinely welcome.
+
+## Changelog
+
+- **1.26**: The security notes ([SECURITY.md](SECURITY.md)) now cover the GNOME
+  extension and every message the background service accepts and sends. The
+  extension skips cursor-theme files over 4 MiB when it looks for the link hand.
+- **1.25**: midscroll is now Scroll Goblin. The name changed everywhere you see
+  it; the command, package, services, `/etc/midscroll.conf` and the GNOME
+  extension ID are unchanged, so it upgrades in place and keeps your settings.
+- **1.24**: Click to scroll, like Windows (on by default). On GNOME, slow drags
+  are smoother, the scroll can stay where you pressed (turn off *Cursor moves
+  while scrolling*), and the extension has indicator styles (ring and trail,
+  ring, bars) with color, size and a speed readout. GNOME extension v10.
+- Earlier versions: see [Releases](https://github.com/GAServantes/scroll-goblin/releases).
 
 ## License
 
